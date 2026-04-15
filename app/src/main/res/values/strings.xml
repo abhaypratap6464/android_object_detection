@@ -1,4 +1,17 @@
 <resources>
-    <string name="app_name">android_object_detection</string>
+    <string name="app_name">Object Detection</string>
+
+    <!-- Home Screen -->
     <string name="open_photos">Open photos</string>
+
+    <!-- Result Screen -->
+    <string name="detecting_objects">Detecting objects…</string>
+    <string name="original_image">Original image</string>
+    <string name="object_detection_image">Object detection image</string>
+    <string name="go_to_main">Go to main</string>
+    <string name="go_back">Go back</string>
+
+    <!-- Error Messages -->
+    <string name="error_could_not_load_image">Could not load image</string>
+    <string name="error_detection_failed">Detection failed</string>
 </resources>

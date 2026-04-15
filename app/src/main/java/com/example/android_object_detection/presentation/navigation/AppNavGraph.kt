@@ -7,6 +7,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.android_object_detection.presentation.home.homeEntry
+import com.example.android_object_detection.presentation.result.resultEntry
 
 @Composable
 fun NavGraph(startDestination: NavKey = HomeNavKey) {
@@ -18,6 +19,7 @@ fun NavGraph(startDestination: NavKey = HomeNavKey) {
         onBack = navigator::goBack,
         entryProvider = entryProvider {
             homeEntry(navigator)
+            resultEntry(navigator)
         }
     )
 }
