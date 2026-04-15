@@ -1,6 +1,7 @@
 package com.example.android_object_detection.presentation.result
 
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,15 +27,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.example.android_object_detection.R
 import com.example.android_object_detection.presentation.components.PrimaryButton
 
 @Composable
 fun ResultScreen(
-    uiState: ResultUiState,
-    onGoToMain: () -> Unit
+    imageUri: Uri,
+    onGoToMain: () -> Unit,
+    viewModel: ResultViewModel = hiltViewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(imageUri) {
+        viewModel.processImage(imageUri.toString())
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,11 +53,11 @@ fun ResultScreen(
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        when (uiState) {
+        when (val state = uiState) {
             is ResultUiState.Idle -> Unit
             is ResultUiState.Loading -> LoadingContent()
-            is ResultUiState.Success -> SuccessContent(uiState, onGoToMain)
-            is ResultUiState.Error -> ErrorContent(uiState.message, onGoToMain)
+            is ResultUiState.Success -> SuccessContent(state, onGoToMain)
+            is ResultUiState.Error -> ErrorContent(state.message, onGoToMain)
         }
     }
 }
@@ -149,36 +162,13 @@ private fun ErrorContent(
 }
 
 
-@Preview(showBackground = true, name = "Loading")
-@Composable
-fun ResultScreenLoadingPreview() {
-    MaterialTheme {
-        ResultScreen(uiState = ResultUiState.Loading, onGoToMain = {})
-    }
-}
-
 @Preview(showBackground = true, name = "Success")
 @Composable
 fun ResultScreenSuccessPreview() {
     MaterialTheme {
         ResultScreen(
-            uiState = ResultUiState.Success(
-                originalUriString = "https://picsum.photos/id/1015/800/600",
-                annotatedBytes = ByteArray(0),
-                detections = emptyList()
-            ),
-            onGoToMain = {}
-        )
-    }
-}
-
-@Preview(showBackground = true, name = "Error")
-@Composable
-fun ResultScreenErrorPreview() {
-    MaterialTheme {
-        ResultScreen(
-            uiState = ResultUiState.Error("Could not load image"),
-            onGoToMain = {}
+            imageUri = "https://picsum.photos/id/1015/800/600".toUri(),
+            onGoToMain = {},
         )
     }
 }

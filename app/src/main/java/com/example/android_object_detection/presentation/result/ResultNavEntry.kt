@@ -9,10 +9,10 @@ import com.example.android_object_detection.presentation.navigation.ResultNavKey
 fun EntryProviderScope<NavKey>.resultEntry(navigator: Navigator) {
     entry<ResultNavKey> { backStackEntry ->
         val imageUriString = backStackEntry.imageUriString
-        imageUriString.toUri()
+        val uri = imageUriString.toUri()
 
         ResultScreen(
-            uiState = ResultUiState.Idle,
+            imageUri = uri,
             onGoToMain = { navigator.goBack() }
         )
     }

@@ -1,9 +1,11 @@
 package com.example.android_object_detection.domain.model
 
-import android.graphics.RectF
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 data class DetectionResult(
     val label: String,
     val confidence: Float,
-    val boundingBox: RectF
+    val boundingBox: BoundingBox
 )
