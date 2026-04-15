@@ -1,0 +1,67 @@
+# Built outputs
+/build
+app/build
+**/build/
+
+# Local configuration
+local.properties
+*.local.properties
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+
+# Gradle
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+!gradle/wrapper/gradle-wrapper.properties
+
+# Keystore / signing
+*.jks
+*.keystore
+keystore.properties
+
+# ProGuard
+proguard/
+*.pro.bak
+
+# Navigation safe args generated
+app/src/main/java/**/*Directions.kt
+app/src/main/java/**/*Args.kt
+
+# Hilt generated
+app/src/main/java/**/*_HiltComponents.java
+app/src/main/java/**/*_MembersInjector.java
+
+# KSP / KAPT generated
+app/build/generated/
+**/generated/
+
+# OS files
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Secrets / API keys
+secrets.properties
+google-services.json
+
+# Captures
+captures/
+
+# Test results
+test-results/
+lint-results*
+*.lint.xml
+
+# Backup files
+*.bak
+*.swp
+*.orig
+*~
