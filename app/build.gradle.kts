@@ -7,16 +7,16 @@ plugins {
 }
 
 android {
-    namespace = "com.yourapp.objectdetection"
+    namespace = "com.example.android_object_detection"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.yourapp.objectdetection"
+        applicationId = "com.example.android_object_detection"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "com.yourapp.objectdetection.HiltTestRunner"
+        testInstrumentationRunner = "com.example.android_object_detection.HiltTestRunner"
     }
 
     buildTypes {

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">android_object_detection</string>
+    <string name="open_photos">Open photos</string>
 </resources>
