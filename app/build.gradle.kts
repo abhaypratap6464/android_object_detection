@@ -19,6 +19,10 @@ android {
         testInstrumentationRunner = "com.example.android_object_detection.HiltTestRunner"
     }
 
+    androidResources {
+        noCompress += "tflite"
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -67,8 +71,8 @@ dependencies {
     //  Image Loading
     implementation(libs.coil.compose)
 
-    //  ML Kit
-    implementation(libs.mlkit.objectdetection)
+    //  LiteRT (TensorFlow Lite Runtime)
+    implementation(libs.litert.core)
 
     //  Unit Tests 
     testImplementation(libs.junit)
